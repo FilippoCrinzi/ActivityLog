@@ -11,7 +11,8 @@
 
 class Activity {
 public:
-    Activity(std::string description,Time finish,Time start);
+    Activity(std::string description, Time finish, Time start);
+    ~Activity()=default;
 private:
  std::string Description;
  Time Finish;

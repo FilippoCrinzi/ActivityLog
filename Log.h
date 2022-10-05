@@ -7,16 +7,16 @@
 #include <map>
 #include <list>
 #include "Activity.h"
+#include "Date.h"
 
 class Log {
 public:
     Log(){};
-    void AddActivity(Activity a);
-    void ReadActivity(int giorno);
+    void AddActivity(const Date d,Activity a);
+    void ReadActivity(Date giorno);
+    ~Log();
 private:
-    std::map <int ,std::list<Activity>> Register ;
-// TODO: implementare una classe Day, la chiave del registro deve essere di tipo Day non int
-
+    std::map <Date,std::list<Activity>> Register ;
 };
 
 

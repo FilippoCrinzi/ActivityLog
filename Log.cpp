@@ -3,11 +3,14 @@
 //
 
 #include "Log.h"
+#include "Date.h"
 
-void Log::AddActivity(Activity a) {
+void Log::AddActivity(const Date d,Activity a) {
+    }
 
+void Log::ReadActivity(Date giorno) {
 }
 
-void Log::ReadActivity(int giorno) {
-
+Log::~Log() {
+   Register.clear();
 }

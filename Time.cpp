@@ -4,7 +4,7 @@
 
 #include "Time.h"
 
-Time::Time(int hour, int minutes, int seconds) {
+Time::Time(unsigned int hour,unsigned int minutes, unsigned int seconds) {
     Hour=hour;
     Minutes=minutes;
     Seconds=seconds;

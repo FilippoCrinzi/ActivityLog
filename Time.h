@@ -9,12 +9,14 @@
 class Time {
 public:
     Time();
-    Time(int hour,int minutes, int seconds);
+    Time(unsigned int hour,unsigned int minutes,unsigned int seconds);
     Time& operator=(const Time& right);
+    ~Time()=default;
+
 private:
-    int Seconds;
-    int Minutes;
-    int Hour;
+    unsigned int Seconds;
+    unsigned int Minutes;
+    unsigned int Hour;
 
 };
 
