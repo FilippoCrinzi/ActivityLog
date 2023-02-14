@@ -12,6 +12,7 @@ public:
     ~Date()= default;
     bool checkLeapYear();
     bool operator==(const Date& right);
+    bool operator<(const Date& right) const;
 private:
     unsigned int Year;
     unsigned int Month;

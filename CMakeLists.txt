@@ -13,7 +13,7 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(ActivityLog main.cpp Activity.cpp Activity.h Log.cpp Log.h Time.cpp Time.h Date.cpp Date.h)
+add_executable(ActivityLog main.cpp Activity.cpp Activity.h Log.cpp Log.h Time.cpp Time.h Date.cpp Date.h MainWindow.cpp MainWindow.h)
 target_link_libraries(ActivityLog
         Qt::Core
         Qt::Gui

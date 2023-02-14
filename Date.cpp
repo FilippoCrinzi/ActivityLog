@@ -22,12 +22,28 @@ bool Date::checkLeapYear() {
 }
 
 bool Date::operator==(const Date &right) {
-    if(Year==right.Year && Month==right.Month && Day==right.Day){
+    if(Year == right.Year && Month == right.Month && Day == right.Day)
         return true;
-    }
     else
+        return false;
+}
+
+bool Date::operator<( const Date &right) const {
+    if(Year < right.Year)
+        return true;
+    if(Year == right.Year && Month < right.Month )
+        return true;
+    if(Year == right.Year && Month == right.Month && Day < right.Day )
+        return true;
+
     return false;
 }
+
+
+
+
+
+
 
 
 

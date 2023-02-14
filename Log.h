@@ -12,7 +12,7 @@
 class Log {
 public:
     Log(){};
-    void AddActivity( Date &d,Activity a);
+    void AddActivity( Date &d,Activity &a);
     void ReadActivity(Date giorno);
     ~Log();
 private:
