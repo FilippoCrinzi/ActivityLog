@@ -4,17 +4,15 @@
 
 #include "Time.h"
 
-Time::Time(unsigned int hour,unsigned int minutes, unsigned int seconds) {
+Time::Time(unsigned int hour,unsigned int minutes) {
     Hour=hour;
     Minutes=minutes;
-    Seconds=seconds;
 }
 
 Time& Time::operator=(const Time& right) {
     if(this != &right){              //evito la autoassegnazione
         Hour=right.Hour;
         Minutes=right.Minutes;
-        Seconds=right.Seconds;
     }
     return * this;
 }
@@ -22,5 +20,4 @@ Time& Time::operator=(const Time& right) {
 Time::Time() {
      Hour=0;
      Minutes=0;
-     Seconds=0;
 }

@@ -7,16 +7,26 @@
 
 #include <QMainWindow>
 #include <QLabel>
-#include <QPushButton>
+#include "Log.h"
+#include <QStringList>
+#include "Date.h"
+#include <QDate>
+#include <QTableWidget>
 
 
-class MainWindow : public QMainWindow {
+
+class MainWindow : public QMainWindow  {
+    Q_OBJECT
 public:
-    MainWindow();
+    MainWindow(Log Register,Date day);
+    QStringList ReadActivity(Date d);
+
 
 private:
-    QLabel * text;
-    QPushButton * button;
+    Log Register;
+    QDate text;
+    QLabel *ViewDay;
+    QTableWidget *ActivityTab;
 };
 
 

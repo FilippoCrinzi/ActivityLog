@@ -13,6 +13,13 @@ public:
     bool checkLeapYear();
     bool operator==(const Date& right);
     bool operator<(const Date& right) const;
+
+    unsigned int getYear() const;
+
+    unsigned int getMonth() const;
+
+    unsigned int getDay() const;
+
 private:
     unsigned int Year;
     unsigned int Month;

@@ -39,6 +39,18 @@ bool Date::operator<( const Date &right) const {
     return false;
 }
 
+unsigned int Date::getYear() const {
+    return Year;
+}
+
+unsigned int Date::getMonth() const {
+    return Month;
+}
+
+unsigned int Date::getDay() const {
+    return Day;
+}
+
 
 
 

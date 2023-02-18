@@ -5,7 +5,7 @@
 #include "Log.h"
 #include "Date.h"
 
-void Log::AddActivity( Date& d,Activity& a) {
+void Log::AddActivity(Date d, Activity a) {
     //std::map<Date, std::list<Activity>>::iterator itr;
     bool find=false;
     //Controllo se nel registro è già presente un attività fatta nello stesso giorno di quella che voglio inserire,
@@ -17,7 +17,7 @@ void Log::AddActivity( Date& d,Activity& a) {
     }
     //Se non ho trovato altre attività fatte nello stesso giorno aggiungo nel registro un giorno con la sua lista delle attività
     if(!find){
-        std::list<Activity> NewDay;
+        std::list< Activity> NewDay;
         NewDay.push_back(a);
         Register.insert(std::make_pair(d,NewDay));
 
@@ -25,8 +25,19 @@ void Log::AddActivity( Date& d,Activity& a) {
     }
 
 void Log::ReadActivity(Date giorno) {
+
 }
 
 Log::~Log() {
    Register.clear();
+}
+
+
+
+std::list<Activity> Log::find(Date d) {
+    for(auto itr = Register.begin(); itr != Register.end(); itr++){
+        if(itr->first == d)
+            return itr->second;
+        return std::list<Activity>();
+    }
 }
