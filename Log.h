@@ -12,7 +12,7 @@
 class Log {
 public:
     Log(){};
-    void AddActivity(Date d, Activity a);
+    void AddActivity(Date d, Activity const &a);
     void ReadActivity(Date giorno);
     std::list<Activity> find(Date d);
     ~Log();

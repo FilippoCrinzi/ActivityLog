@@ -7,15 +7,21 @@
 
 #include <string>
 #include "Time.h"
+#include <QString>
 
 
 class Activity {
 public:
-    Activity(std::string description, Time start, Time finish);
+    Activity(QString description, Time start, Time finish);
     ~Activity()=default;
-    std::string const getDescription()const ;
+    QString const getDescription()const ;
+
+    const Time &getFinish() const;
+
+    const Time &getStart() const;
+
 private:
- std::string Description;
+ QString Description;
  Time Finish;
  Time Start;
 

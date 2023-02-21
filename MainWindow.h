@@ -19,12 +19,11 @@ class MainWindow : public QMainWindow  {
     Q_OBJECT
 public:
     MainWindow(Log Register,Date day);
-    QStringList ReadActivity(Date d);
 
 
 private:
     Log Register;
-    QDate text;
+    QDate Day;
     QLabel *ViewDay;
     QTableWidget *ActivityTab;
 };

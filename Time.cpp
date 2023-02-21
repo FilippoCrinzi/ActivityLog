@@ -21,3 +21,12 @@ Time::Time() {
      Hour=0;
      Minutes=0;
 }
+
+unsigned int Time::getMinutes() const {
+    return Minutes;
+}
+
+unsigned int Time::getHour() const {
+    return Hour;
+}
+
