@@ -21,8 +21,7 @@ int main(int argc, char *argv[]) {
     Registro.AddActivity(n,Activity("studio",Time(14,00),Time(17,30)));
     Registro.AddActivity(n,Activity("pranzo",Time(12,15),Time(14,00)));
     Registro.AddActivity(d,Activity("pranzo con la Giulia <3",Time(12,15),Time(14,00)));
-    MainWindow finestra(Registro,d);
-
+    MainWindow finestra(Registro,n);
     finestra.show();
     //QPushButton button("Hello world!", nullptr);
     //button.resize(200, 100);

@@ -30,3 +30,9 @@ unsigned int Time::getHour() const {
     return Hour;
 }
 
+bool Time::operator<(const Time& other) const {
+    if (Hour == other.Hour) {
+        return Minutes < other.Minutes;
+    }
+    return Hour < other.Hour;
+}

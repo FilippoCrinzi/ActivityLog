@@ -14,7 +14,12 @@ void Log::AddActivity(Date d, Activity const &a) {
     //in tal caso aggiungo l'attività nella lista di attività del giorno
     for(auto & itr : Register){
         if(itr.first == d){
-           itr.second.insert(itr.second.begin(),a);
+            auto it = itr.second.begin();
+            while (it != itr.second.end() && it->getStart() < a.getStart()) {
+                ++it;
+            }
+
+            itr.second.insert(it,a);
            find=true;
            std::printf("\nprova");
         }

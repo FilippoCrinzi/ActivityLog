@@ -17,6 +17,7 @@ public:
     unsigned int getHour() const;
 
     Time& operator=(const Time& right);
+    bool operator<(const Time& other) const;
     ~Time()=default;
 
 private:
