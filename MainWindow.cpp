@@ -19,14 +19,14 @@ MainWindow::MainWindow(Log Register,Date day) {
     this->setFixedSize(QSize(600, 400));
 
     //Imposto il titolo della finestra
-    this->setWindowTitle("registro attività");
     this->setFixedSize(QSize(600, 400));
 
     //Iniziallizzo Day e ViewDay
     Day = QDate(day.getYear(),day.getMonth(),day.getDay() );
+    this->setWindowTitle(Day.toString());
     ViewDay = new QLabel(Day.toString(),this);
     ViewDay->setGeometry(QRect(QPoint(150, 15), QSize(300, 100)));
-    ViewDay->setStyleSheet("QLabel { background-color : grey; color : white; }");
+    ViewDay->setStyleSheet("QLabel { background-color : grey; color : white; font-size: 21px; }");
     ViewDay->setAlignment(Qt::AlignCenter);
 
     //Cerco il giorno di cui voglio sapere le attività dal registro con il metodo find

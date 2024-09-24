@@ -4,12 +4,13 @@
 
 #include "Time.h"
 
-Time::Time(unsigned int hour,unsigned int minutes) {
+Time::Time(int hour,int minutes) {
+    validateTime(hour, minutes);
     Hour=hour;
     Minutes=minutes;
 }
 
-Time& Time::operator=(const Time& right) {
+Time& Time::operator=(const Time& right){
     if(this != &right){              //evito la autoassegnazione
         Hour=right.Hour;
         Minutes=right.Minutes;
@@ -17,16 +18,11 @@ Time& Time::operator=(const Time& right) {
     return * this;
 }
 
-Time::Time() {
-     Hour=0;
-     Minutes=0;
-}
-
-unsigned int Time::getMinutes() const {
+int Time::getMinutes() const {
     return Minutes;
 }
 
-unsigned int Time::getHour() const {
+int Time::getHour() const {
     return Hour;
 }
 
@@ -35,4 +31,10 @@ bool Time::operator<(const Time& other) const {
         return Minutes < other.Minutes;
     }
     return Hour < other.Hour;
+}
+
+void Time::validateTime(int hour, int minutes) {
+    if (hour >= 24 || minutes >= 60 || hour < 0 || minutes < 0) {
+        throw std::invalid_argument("Invalid time: hour must be from 0 to 23 and minutes must be from 0 to 59");
+    }
 }

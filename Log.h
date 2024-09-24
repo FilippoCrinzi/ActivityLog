@@ -11,7 +11,7 @@
 
 class Log {
 public:
-    Log(){};
+    Log()=default;
     void AddActivity(Date d, Activity const &a);
     void ReadActivity(Date giorno);
     std::list<Activity> find(Date d);

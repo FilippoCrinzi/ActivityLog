@@ -25,8 +25,6 @@ private:
  Time Finish;
  Time Start;
 
-
-
 };
 
 

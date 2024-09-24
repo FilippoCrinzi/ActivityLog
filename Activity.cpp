@@ -4,11 +4,8 @@
 
 #include "Activity.h"
 
-Activity::Activity(QString description, Time start, Time finish) {
-      Description=description;
-      Finish=finish;
-      Start=start;
-}
+Activity::Activity(QString description, Time start, Time finish)
+: Description(description), Start(start), Finish(finish) { }
 
 QString const Activity::getDescription()const {
     return Description;

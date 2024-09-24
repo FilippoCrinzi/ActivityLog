@@ -9,20 +9,20 @@
 
 class Time {
 public:
-    Time();
-    Time(unsigned int hour,unsigned int minutes);
+    Time(int hour,int minutes);
+    ~Time()=default;
 
-    unsigned int getMinutes() const;
-
-    unsigned int getHour() const;
+    int getMinutes() const;
+    int getHour() const;
 
     Time& operator=(const Time& right);
     bool operator<(const Time& other) const;
-    ~Time()=default;
+
 
 private:
-    unsigned int Minutes;
-    unsigned int Hour;
+    int Minutes;
+    int Hour;
+    static void validateTime(int hour, int minutes);
 
 };
 

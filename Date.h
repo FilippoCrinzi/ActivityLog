@@ -8,22 +8,23 @@
 
 class Date {
 public:
-    Date(unsigned int day,unsigned int month,unsigned int year);
+    Date(int day, int month, int year);
     ~Date()= default;
-    bool checkLeapYear();
-    bool operator==(const Date& right);
+    static bool checkLeapYear( int year);
+    bool operator==(const Date& right) const;
     bool operator<(const Date& right) const;
 
-    unsigned int getYear() const;
+    int getYear() const;
 
-    unsigned int getMonth() const;
+    int getMonth() const;
 
-    unsigned int getDay() const;
+    int getDay() const;
 
 private:
-    unsigned int Year;
-    unsigned int Month;
-    unsigned int Day;
+    int Year;
+    int Month;
+    int Day;
+    static void validateDate(int day, int month, int year);
 };
 
 
