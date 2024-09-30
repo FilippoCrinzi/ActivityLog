@@ -14,7 +14,7 @@ class Activity {
 public:
     Activity(QString description, Time start, Time finish);
     ~Activity()=default;
-    QString const getDescription()const ;
+    QString const getDescription()const;
 
     const Time &getFinish() const;
 

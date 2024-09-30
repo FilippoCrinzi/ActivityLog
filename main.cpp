@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
         Registro.AddActivity(n, Activity("studio", Time(14, 00), Time(17, 30)));
         Registro.AddActivity(n, Activity("pranzo", Time(12, 15), Time(14, 00)));
         Registro.AddActivity(d, Activity("pranzo con la Giulia <3", Time(12, 15), Time(14, 00)));
+        Registro.AddActivity(c, Activity("provaC", Time(12, 15), Time(14, 00)));
         MainWindow finestra(Registro, d);
         finestra.show();
         return QApplication::exec();
