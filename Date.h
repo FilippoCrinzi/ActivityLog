@@ -9,10 +9,14 @@
 class Date {
 public:
     Date(int day, int month, int year);
-    ~Date()= default;
-    static bool checkLeapYear( int year);
-    bool operator==(const Date& right) const;
-    bool operator<(const Date& right) const;
+
+    ~Date() = default;
+
+    bool checkLeapYear(int year);
+
+    bool operator==(const Date &right) const;
+
+    bool operator<(const Date &right) const;
 
     int getYear() const;
 
@@ -21,10 +25,11 @@ public:
     int getDay() const;
 
 private:
-    int Year;
-    int Month;
-    int Day;
-    static void validateDate(int day, int month, int year);
+    int year;
+    int month;
+    int day;
+
+    void validateDate(int day, int month, int year);
 };
 
 

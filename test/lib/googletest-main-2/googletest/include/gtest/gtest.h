@@ -926,7 +926,7 @@ class TestEventListener {
  public:
   virtual ~TestEventListener() = default;
 
-  // Fired before any test activity starts.
+  // Fired before any test activityRegister starts.
   virtual void OnTestProgramStart(const UnitTest& unit_test) = 0;
 
   // Fired before each iteration of tests starts.  There may be more than

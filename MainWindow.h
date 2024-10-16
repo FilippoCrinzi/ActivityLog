@@ -18,14 +18,14 @@
 class MainWindow : public QMainWindow  {
     Q_OBJECT
 public:
-    MainWindow(Log Register,Date day);
+    MainWindow(Log log, Date day);
 
 
 private:
-    Log Register;
-    QDate Day;
-    QLabel *ViewDay;
-    QTableWidget *ActivityTab;
+    Log activityRegister;
+    QDate date;
+    QLabel *viewDay;
+    QTableWidget *activityTab;
 };
 
 

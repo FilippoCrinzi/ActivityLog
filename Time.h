@@ -4,25 +4,32 @@
 
 #ifndef ACTIVITYLOG_TIME_H
 #define ACTIVITYLOG_TIME_H
+
 #include "string"
 
 
 class Time {
 public:
-    Time(int hour,int minutes);
-    ~Time()=default;
+    Time(int hour, int minutes);
+
+    ~Time() = default;
 
     int getMinutes() const;
+
     int getHour() const;
 
-    Time& operator=(const Time& right);
-    bool operator<(const Time& other) const;
+    Time &operator=(const Time &right);
+
+    bool operator<(const Time &other) const;
+
+    bool operator==(const Time &right) const;
 
 
 private:
-    int Minutes;
-    int Hour;
-    static void validateTime(int hour, int minutes);
+    int minutes;
+    int hour;
+
+    void validateTime(int hour, int minutes);
 
 };
 

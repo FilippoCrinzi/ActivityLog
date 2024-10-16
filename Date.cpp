@@ -7,40 +7,40 @@
 
 Date::Date(int day, int month, int year) {
      validateDate(day, month, year);
-     Day=day;
-     Month=month;
-     Year=year;
+     this->day=day;
+     this->month=month;
+     this->year=year;
 }
 
 
 bool Date::operator==(const Date &right) const{
-    if(Year == right.Year && Month == right.Month && Day == right.Day)
+    if(year == right.year && month == right.month && day == right.day)
         return true;
     else
         return false;
 }
 
 bool Date::operator<( const Date &right) const {
-    if(Year < right.Year)
+    if(year < right.year)
         return true;
-    if(Year == right.Year && Month < right.Month )
+    if(year == right.year && month < right.month )
         return true;
-    if(Year == right.Year && Month == right.Month && Day < right.Day )
+    if(year == right.year && month == right.month && day < right.day )
         return true;
 
     return false;
 }
 
 int Date::getYear() const {
-    return Year;
+    return year;
 }
 
 int Date::getMonth() const {
-    return Month;
+    return month;
 }
 
 int Date::getDay() const {
-    return Day;
+    return day;
 }
 
 void Date::validateDate(int day, int month, int year) {

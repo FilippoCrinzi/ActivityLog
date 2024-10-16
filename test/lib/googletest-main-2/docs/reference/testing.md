@@ -276,7 +276,7 @@ TYPED_TEST_SUITE_P(MyFixture);
 TYPED_TEST_P(MyFixture, HasPropertyA) { ... }
 TYPED_TEST_P(MyFixture, HasPropertyB) { ... }
 
-// Register the tests in the test suite.
+// activityRegister the tests in the test suite.
 REGISTER_TYPED_TEST_SUITE_P(MyFixture, HasPropertyA, HasPropertyB);
 ```
 
@@ -959,7 +959,7 @@ the order the corresponding events are fired.
 
 `virtual void TestEventListener::OnTestProgramStart(const UnitTest& unit_test)`
 
-Fired before any test activity starts.
+Fired before any test activityRegister starts.
 
 ##### OnTestIterationStart {#TestEventListener::OnTestIterationStart}
 

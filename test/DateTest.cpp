@@ -13,11 +13,9 @@ TEST(DateTest, Constructor) {
 }
 
 TEST(DateTest, InvalidDate) {
-    EXPECT_THROW(Date(3,13,2022), std::invalid_argument);
-    EXPECT_THROW(Date(32,8,2022), std::invalid_argument);
-    EXPECT_THROW(Date(3,10,-2022), std::invalid_argument);
-    EXPECT_THROW(Date(29,2,2021), std::invalid_argument);
-    EXPECT_THROW(Date(31,11,2020), std::invalid_argument);
-
-
+    EXPECT_THROW(Date(3, 13, 2022), std::invalid_argument);
+    EXPECT_THROW(Date(32, 8, 2022), std::invalid_argument);
+    EXPECT_THROW(Date(3, 10, -2022), std::invalid_argument);
+    EXPECT_THROW(Date(29, 2, 2021), std::invalid_argument);
+    EXPECT_THROW(Date(31, 11, 2020), std::invalid_argument);
 }
