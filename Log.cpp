@@ -40,13 +40,12 @@ Log::~Log() {
 }
 
 
-std::list<Activity> Log::find(Date d) {
+std::list<Activity> & Log::find(Date d) {
     for (auto &itr: activityRegister) {
         if (itr.first == d)
             return itr.second;
     }
-    return std::list<Activity>();
-}
+    throw std::invalid_argument("Data non trovata nel registro delle attività.");}
 
 
 void Log::removeActivity(const Activity &activityToRemove) {
@@ -58,14 +57,18 @@ void Log::removeActivity(const Activity &activityToRemove) {
             if (it != itr.second.end()) {
                 itr.second.erase(it);
                 found = true;
+                std::printf("Attività rimossa\n");
                 if (itr.second.empty()) {
                     activityRegister.erase(itr.first);
+                    std::printf("Giorno rimosso\n");
                 }
+
+                break;
             }
         }
     }
     if (!found) {
-        throw std::invalid_argument("Stai cercando di eliminare un'attività che non esiste");
+        throw std::invalid_argument("Invalid update: the activity you are trying to modify does not exist.");
     }
 }
 
@@ -78,52 +81,81 @@ int Log::countActivities() {
 }
 
 void Log::updateActivity(const Activity &oldActivity, const Time &newTime, FieldToUpdate field) {
+    bool found = false;
 
     for (auto &itr: activityRegister) {
         if (itr.first == oldActivity.getDate()) {
             auto it = std::find(itr.second.begin(), itr.second.end(), oldActivity);
             if (it != itr.second.end()) {
+                found = true;
                 if (field == FieldToUpdate::Start) {
+                    if (oldActivity.getFinish() < newTime) {
+                        throw std::invalid_argument("Invalid activity: start time must be before finish time");
+                    }
+                    if (newTime == oldActivity.getFinish()) {
+                        throw std::invalid_argument("Invalid activity: start time must be different from finish time");
+                    }
                     it->setStart(newTime); // Modifica il tempo di inizio
                 } else if (field == FieldToUpdate::Finish) {
+                    if (newTime < oldActivity.getStart()) {
+                        throw std::invalid_argument("Invalid activity: start time must be before finish time");
+                    }
+                    if (newTime == oldActivity.getStart()) {
+                        throw std::invalid_argument("Invalid activity: start time must be different from finish time");
+                    }
                     it->setFinish(newTime); // Modifica il tempo di fine
                 } else {
-                    throw std::invalid_argument(
-                            "stai cercando di modificare il tempo ma non hai specificato correttamente il campo");
+                    throw std::invalid_argument("Invalid update: you're trying to modify the time but the field is incorrect.");
                 }
-            } else {
-                throw std::invalid_argument("stai cercando di modificare un'attività che non esiste");
             }
         }
+    }
+    if (!found) {
+        throw std::invalid_argument("Invalid update: the activity you are trying to modify does not exist.");
     }
 }
 
 void Log::updateActivity(const Activity &oldActivity, const QString &newDescription, FieldToUpdate field) {
+    bool found = false;
 
     for (auto &itr: activityRegister) {
         if (itr.first == oldActivity.getDate()) {
             auto it = std::find(itr.second.begin(), itr.second.end(), oldActivity);
             if (it != itr.second.end()) {
+                found = true;
                 if (field == FieldToUpdate::Description) {
                     it->setDescription(newDescription); // Modifica la descrizione
                 } else {
-                    throw std::invalid_argument(
-                            "stai cercando di modificare la descrizione ma non hai specificato correttamente il campo");
+                    throw std::invalid_argument("Invalid update: you're trying to modify the description but the field is incorrect.");
                 }
-            } else {
-                throw std::invalid_argument("stai cercando di modificare un'attività che non esiste");
             }
         }
+    }
+    if (!found) {
+        throw std::invalid_argument("Invalid update: the activity you are trying to modify does not exist.");
     }
 }
 
 void Log::updateActivity(const Activity &oldActivity, const Date &newDate, FieldToUpdate field) {
-    if (field == FieldToUpdate::Date) {
-        removeActivity(oldActivity);
-        addActivity(Activity(oldActivity.getDescription(), oldActivity.getStart(), oldActivity.getFinish(), newDate));
-    } else {
-        throw std::invalid_argument(
-                "stai cercando di modificare la data ma non hai specificato correttamente il campo");
+    bool found = false;
+
+    for (auto &itr: activityRegister) {
+        if (itr.first == oldActivity.getDate()) {
+            auto it = std::find(itr.second.begin(), itr.second.end(), oldActivity);
+            if (it != itr.second.end()) {
+                found = true;
+                if (field == FieldToUpdate::Date) {
+                    removeActivity(oldActivity);
+                    addActivity(Activity(oldActivity.getDescription(), oldActivity.getStart(), oldActivity.getFinish(), newDate));
+                    break;
+                } else {
+                    throw std::invalid_argument("Invalid update: you're trying to modify the date but the field is incorrect.");
+                    }
+            }
+        }
+    }
+    if (!found) {
+        throw std::invalid_argument("Invalid update: the activity you are trying to modify does not exist.");
     }
 }
 

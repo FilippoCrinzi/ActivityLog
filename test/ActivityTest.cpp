@@ -24,12 +24,15 @@ TEST(ActivityTest, Constructor) {
     EXPECT_EQ(activity.getDate().getYear(), 2024);
 }
 
-TEST(ActivityTest, InvalidActivity){
+TEST(ActivityTest, InvalidActivity) {
     Time start(9, 0);
     Time finish(8, 0);
     Date date(26, 9, 2024);
+
     EXPECT_THROW(Activity("Meeting", start, finish, date), std::invalid_argument);
+
     Time start2(9, 0);
     Time finish2(9, 0);
+
     EXPECT_THROW(Activity("Meeting", start2, finish2, date), std::invalid_argument);
 }

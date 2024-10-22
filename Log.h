@@ -16,7 +16,7 @@ public:
 
     void addActivity(const Activity &a);
 
-    std::list<Activity> find(Date d);
+    std::list<Activity>& find(Date d);
 
     enum class FieldToUpdate {
         Start, Finish, Description, Date
