@@ -14,9 +14,9 @@
 #include <QTableWidget>
 
 
+class MainWindow : public QMainWindow {
+Q_OBJECT
 
-class MainWindow : public QMainWindow  {
-    Q_OBJECT
 public:
     MainWindow(Log log, Date day);
 

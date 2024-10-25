@@ -14,9 +14,9 @@ public:
 
     bool checkLeapYear(int year);
 
-    bool operator==(const Date &right) const;
+    bool operator==(const Date& right) const;
 
-    bool operator<(const Date &right) const;
+    bool operator<(const Date& right) const;
 
     int getYear() const;
 

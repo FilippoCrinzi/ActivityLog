@@ -6,26 +6,26 @@
 #include <string>
 
 Date::Date(int day, int month, int year) {
-     validateDate(day, month, year);
-     this->day=day;
-     this->month=month;
-     this->year=year;
+    validateDate(day, month, year);
+    this->day = day;
+    this->month = month;
+    this->year = year;
 }
 
 
-bool Date::operator==(const Date &right) const{
-    if(year == right.year && month == right.month && day == right.day)
+bool Date::operator==(const Date& right) const {
+    if (year == right.year && month == right.month && day == right.day)
         return true;
     else
         return false;
 }
 
-bool Date::operator<( const Date &right) const {
-    if(year < right.year)
+bool Date::operator<(const Date& right) const {
+    if (year < right.year)
         return true;
-    if(year == right.year && month < right.month )
+    if (year == right.year && month < right.month)
         return true;
-    if(year == right.year && month == right.month && day < right.day )
+    if (year == right.year && month == right.month && day < right.day)
         return true;
 
     return false;
@@ -59,7 +59,7 @@ void Date::validateDate(int day, int month, int year) {
     }
 }
 
-bool Date::checkLeapYear(int year){
+bool Date::checkLeapYear(int year) {
     if (year % 4 == 0) {
         if (year % 100 == 0) {
             if (year % 400 == 0) {

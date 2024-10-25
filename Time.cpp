@@ -10,7 +10,7 @@ Time::Time(int hour, int minutes) {
     this->minutes = minutes;
 }
 
-Time &Time::operator=(const Time &right) {
+Time &Time::operator=(const Time& right) {
     if (this != &right) {              //evito la autoassegnazione
         hour = right.hour;
         minutes = right.minutes;
@@ -26,7 +26,7 @@ int Time::getHour() const {
     return hour;
 }
 
-bool Time::operator<(const Time &other) const {
+bool Time::operator<(const Time& other) const {
     if (hour == other.hour) {
         return minutes < other.minutes;
     }
@@ -39,8 +39,8 @@ void Time::validateTime(int hour, int minutes) {
     }
 }
 
-bool Time::operator==(const Time &right) const {
-    if(hour == right.hour && minutes == right.minutes)
+bool Time::operator==(const Time& right) const {
+    if (hour == right.hour && minutes == right.minutes)
         return true;
     else
         return false;

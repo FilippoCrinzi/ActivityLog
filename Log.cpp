@@ -6,7 +6,7 @@
 #include "Date.h"
 
 
-void Log::addActivity(const Activity &activityToAdd) {
+void Log::addActivity(const Activity& activityToAdd) {
     //std::map<Date, std::list<Activity>>::iterator itr;
     bool found = false;
 
@@ -15,7 +15,11 @@ void Log::addActivity(const Activity &activityToAdd) {
     for (auto &itr: activityRegister) {
         if (itr.first == activityToAdd.getDate()) {
             auto it = itr.second.begin();
-            while (it != itr.second.end() && it->getStart() < activityToAdd.getStart()) {
+            while (it != itr.second.end() && (it->getStart() < activityToAdd.getStart() or it->getStart()== activityToAdd.getStart()) ) {
+
+                if (it->getStart()==activityToAdd.getStart() && it->getFinish() == activityToAdd.getFinish() && it->getDescription() == activityToAdd.getDescription()) {
+                    throw std::invalid_argument("Invalid activity: the activity you are trying to add already exists.");
+                }
                 ++it;
             }
 
@@ -40,15 +44,16 @@ Log::~Log() {
 }
 
 
-std::list<Activity> & Log::find(Date d) {
+const std::list<Activity> &Log::find(Date d) const{
     for (auto &itr: activityRegister) {
         if (itr.first == d)
             return itr.second;
     }
-    throw std::invalid_argument("Data non trovata nel registro delle attività.");}
+    throw std::invalid_argument("Data non trovata nel registro delle attività.");
+}
 
 
-void Log::removeActivity(const Activity &activityToRemove) {
+void Log::removeActivity(const Activity& activityToRemove) {
     bool found = false;
 
     for (auto &itr: activityRegister) {
@@ -80,7 +85,7 @@ int Log::countActivities() {
     return count;
 }
 
-void Log::updateActivity(const Activity &oldActivity, const Time &newTime, FieldToUpdate field) {
+void Log::updateActivity(const Activity& oldActivity, const Time& newTime, FieldToUpdate field) {
     bool found = false;
 
     for (auto &itr: activityRegister) {
@@ -105,7 +110,8 @@ void Log::updateActivity(const Activity &oldActivity, const Time &newTime, Field
                     }
                     it->setFinish(newTime); // Modifica il tempo di fine
                 } else {
-                    throw std::invalid_argument("Invalid update: you're trying to modify the time but the field is incorrect.");
+                    throw std::invalid_argument(
+                            "Invalid update: you're trying to modify the time but the field is incorrect.");
                 }
             }
         }
@@ -115,7 +121,7 @@ void Log::updateActivity(const Activity &oldActivity, const Time &newTime, Field
     }
 }
 
-void Log::updateActivity(const Activity &oldActivity, const QString &newDescription, FieldToUpdate field) {
+void Log::updateActivity(const Activity& oldActivity, const QString& newDescription, FieldToUpdate field) {
     bool found = false;
 
     for (auto &itr: activityRegister) {
@@ -126,7 +132,8 @@ void Log::updateActivity(const Activity &oldActivity, const QString &newDescript
                 if (field == FieldToUpdate::Description) {
                     it->setDescription(newDescription); // Modifica la descrizione
                 } else {
-                    throw std::invalid_argument("Invalid update: you're trying to modify the description but the field is incorrect.");
+                    throw std::invalid_argument(
+                            "Invalid update: you're trying to modify the description but the field is incorrect.");
                 }
             }
         }
@@ -136,7 +143,7 @@ void Log::updateActivity(const Activity &oldActivity, const QString &newDescript
     }
 }
 
-void Log::updateActivity(const Activity &oldActivity, const Date &newDate, FieldToUpdate field) {
+void Log::updateActivity(const Activity& oldActivity, const Date& newDate, FieldToUpdate field) {
     bool found = false;
 
     for (auto &itr: activityRegister) {
@@ -146,11 +153,13 @@ void Log::updateActivity(const Activity &oldActivity, const Date &newDate, Field
                 found = true;
                 if (field == FieldToUpdate::Date) {
                     removeActivity(oldActivity);
-                    addActivity(Activity(oldActivity.getDescription(), oldActivity.getStart(), oldActivity.getFinish(), newDate));
+                    addActivity(Activity(oldActivity.getDescription(), oldActivity.getStart(), oldActivity.getFinish(),
+                                         newDate));
                     break;
                 } else {
-                    throw std::invalid_argument("Invalid update: you're trying to modify the date but the field is incorrect.");
-                    }
+                    throw std::invalid_argument(
+                            "Invalid update: you're trying to modify the date but the field is incorrect.");
+                }
             }
         }
     }

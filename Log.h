@@ -14,24 +14,23 @@ class Log {
 public:
     Log() = default;
 
-    void addActivity(const Activity &a);
+    void addActivity(const Activity& activityToAdd);
 
-    std::list<Activity>& find(Date d);
+    const std::list<Activity>& find(Date d) const;
 
     enum class FieldToUpdate {
         Start, Finish, Description, Date
     };
 
-    void updateActivity(const Activity &oldActivity, const Time &newTime, FieldToUpdate field);
+    void updateActivity(const Activity& oldActivity, const Time& newTime, FieldToUpdate field);
 
-    void updateActivity(const Activity &oldActivity, const QString &newDescription, FieldToUpdate field);
+    void updateActivity(const Activity& oldActivity, const QString& newDescription, FieldToUpdate field);
 
-    void updateActivity(const Activity &oldActivity, const Date &newDate, FieldToUpdate field);
+    void updateActivity(const Activity& oldActivity, const Date& newDate, FieldToUpdate field);
 
-    void removeActivity(const Activity &a);
+    void removeActivity(const Activity& activityToRemove);
 
     int countActivities();
-
 
     ~Log();
 

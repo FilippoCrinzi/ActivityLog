@@ -17,21 +17,21 @@ public:
 
     ~Activity() = default;
 
-    QString getDescription() const;
+    const QString& getDescription() const;
 
-    const Time &getFinish() const;
+    const Time& getFinish() const;
 
-    const Time &getStart() const;
+    const Time& getStart() const;
 
-    const Date &getDate() const;
+    const Date& getDate() const;
 
-    bool operator==(const Activity &right);
+    bool operator==(const Activity& right) const;
 
-    void setStart(const Time &newStart);
+    void setStart(const Time& newStart);
 
-    void setFinish(const Time &newFinish);
+    void setFinish(const Time& newFinish);
 
-    void setDescription(const QString &newDescription);
+    void setDescription(const QString& newDescription);
 
 private:
     QString description;

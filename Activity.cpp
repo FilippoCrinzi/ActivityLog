@@ -9,23 +9,23 @@ Activity::Activity(QString description, Time start, Time finish, Date date)
     validateActivity(start, finish);
 }
 
-QString Activity::getDescription() const {
+const QString& Activity::getDescription() const {
     return description;
 }
 
-const Time &Activity::getFinish() const {
+const Time& Activity::getFinish() const {
     return finish;
 }
 
-const Time &Activity::getStart() const {
+const Time& Activity::getStart() const {
     return start;
 }
 
-const Date &Activity::getDate() const {
+const Date& Activity::getDate() const {
     return date;
 }
 
-bool Activity::operator==(const Activity &right) {
+bool Activity::operator==(const Activity& right) const {
     if (description == right.description && start == right.start && finish == right.finish && date == right.date) {
         return true;
     } else
@@ -41,17 +41,17 @@ void Activity::validateActivity(Time start, Time finish) {
     }
 }
 
-void Activity::setStart(const Time &newStart) {
+void Activity::setStart(const Time& newStart) {
     validateActivity(newStart, finish);
     start = newStart;
 
 }
 
-void Activity::setFinish(const Time &newFinish) {
+void Activity::setFinish(const Time& newFinish) {
     validateActivity(start, newFinish);
     finish = newFinish;
 }
 
-void Activity::setDescription(const QString &newDescription) {
+void Activity::setDescription(const QString& newDescription) {
     description = newDescription;
 }

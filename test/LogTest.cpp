@@ -22,7 +22,7 @@ TEST(LogTest, FindActivity) {
     Date date(26, 9, 2024);
     Activity activity("Meeting", start, finish, date);
     log.addActivity(activity);
-    std::list<Activity> &activities = log.find(date);
+    const std::list<Activity> &activities = log.find(date);
 
     EXPECT_EQ(activities.size(), 1);
 }
@@ -47,7 +47,7 @@ TEST(LogTest, UpdateActivity) {
     Activity activity("Meeting", start, finish, date);
     log.addActivity(activity);
     Time newStart(11, 0);
-    std::list<Activity> &activities = log.find(date);
+    const std::list<Activity> &activities = log.find(date);
     auto updatedActivity = std::find(activities.begin(), activities.end(), activity);
     log.updateActivity(activity, newStart, Log::FieldToUpdate::Start);
 
@@ -67,7 +67,7 @@ TEST(LogTest, UpdateActivity) {
     Date newDate(27, 9, 2024);
     log.updateActivity(Activity(newDescription, newStart, newFinish, date), newDate, Log::FieldToUpdate::Date);
 
-    EXPECT_NO_THROW({ std::list<Activity> &activities2 = log.find(newDate); });
+    EXPECT_NO_THROW({ const std::list<Activity> &activities2 = log.find(newDate); });
 }
 
 TEST(LogTest, RemoveActivityException) {
@@ -89,6 +89,7 @@ TEST(LogTest, UpdateActivityException) {
     Time newTime(11, 0);
 
     EXPECT_THROW(log.updateActivity(activity, newTime, Log::FieldToUpdate::Start), std::invalid_argument);
+    EXPECT_THROW(log.updateActivity(activity, Time(30,00), Log::FieldToUpdate::Finish), std::invalid_argument);
 
     QString newDescription("Not_insert");
 
@@ -115,4 +116,24 @@ TEST(LogTest, UpdateActivityException) {
 
     EXPECT_THROW(log.updateActivity(activity, newFinish2, Log::FieldToUpdate::Finish), std::invalid_argument);
     EXPECT_THROW(log.updateActivity(activity, newStart2, Log::FieldToUpdate::Start), std::invalid_argument);
+}
+
+TEST(LogTest, FindActivityException) {
+    Log log;
+    Time start(9, 0);
+    Time finish(10, 0);
+    Date date(26, 9, 2024);
+    Activity activity("Meeting", start, finish, date);
+
+    EXPECT_THROW(log.find(date), std::invalid_argument);
+}
+TEST(LogTest, AddDuplicateActivity) {
+    Log log;
+    Time start(9, 0);
+    Time finish(10, 0);
+    Date date(26, 9, 2024);
+    Activity activity("Meeting", start, finish, date);
+    log.addActivity(activity);
+
+    EXPECT_THROW(log.addActivity(activity), std::invalid_argument);
 }

@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
         registro.addActivity(Activity("pranzo", Time(12, 15), Time(14, 00), d));
         registro.addActivity(Activity("pranzo", Time(13, 15), Time(14, 00), n));
         registro.addActivity(Activity("provaC", Time(12, 15), Time(14, 00), c));
-        //registro.updateActivity(Activity("pranzo", Time(13, 15), Time(14, 00), n), Time(12,15), Log::FieldToUpdate::Start);
+        //registro.updateActivity(Activity("pranzo", Time(30, 15), Time(14, 00), n), Time(12,15), Log::FieldToUpdate::Start);
         //registro.removeActivity(Activity("partita", Time(21, 00), Time(22, 00), n));
         std::printf("\nnumero di attività: %d", registro.countActivities());
         MainWindow finestra(registro, d);

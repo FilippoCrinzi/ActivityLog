@@ -18,11 +18,11 @@ public:
 
     int getHour() const;
 
-    Time &operator=(const Time &right);
+    Time &operator=(const Time& right);
 
-    bool operator<(const Time &other) const;
+    bool operator<(const Time& other) const;
 
-    bool operator==(const Time &right) const;
+    bool operator==(const Time& right) const;
 
 
 private:
