@@ -118,15 +118,6 @@ TEST(LogTest, UpdateActivityException) {
     EXPECT_THROW(log.updateActivity(activity, newStart2, Log::FieldToUpdate::Start), std::invalid_argument);
 }
 
-TEST(LogTest, FindActivityException) {
-    Log log;
-    Time start(9, 0);
-    Time finish(10, 0);
-    Date date(26, 9, 2024);
-    Activity activity("Meeting", start, finish, date);
-
-    EXPECT_THROW(log.find(date), std::invalid_argument);
-}
 TEST(LogTest, AddDuplicateActivity) {
     Log log;
     Time start(9, 0);

@@ -25,7 +25,7 @@ void Log::addActivity(const Activity& activityToAdd) {
 
             itr.second.insert(it, activityToAdd);
             found = true;
-            std::printf("\nprova");
+
         }
     }
     //Se non ho trovato altre attività fatte nello stesso giorno aggiungo nel registro un giorno con la sua lista delle attività
@@ -34,7 +34,7 @@ void Log::addActivity(const Activity& activityToAdd) {
         NewDay.push_back(activityToAdd);
         activityRegister[activityToAdd.getDate()] = NewDay;
         //activityRegister.insert(activityRegister.end(),std::make_pair(d,NewDay));
-        std::printf("\nprova2");
+
     }
 }
 
@@ -49,7 +49,7 @@ const std::list<Activity> &Log::find(Date d) const{
         if (itr.first == d)
             return itr.second;
     }
-    throw std::invalid_argument("Data non trovata nel registro delle attività.");
+    return std::list<Activity>();
 }
 
 
@@ -62,12 +62,10 @@ void Log::removeActivity(const Activity& activityToRemove) {
             if (it != itr.second.end()) {
                 itr.second.erase(it);
                 found = true;
-                std::printf("Attività rimossa\n");
+
                 if (itr.second.empty()) {
                     activityRegister.erase(itr.first);
-                    std::printf("Giorno rimosso\n");
                 }
-
                 break;
             }
         }
