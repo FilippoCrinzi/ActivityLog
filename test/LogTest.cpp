@@ -27,6 +27,14 @@ TEST(LogTest, FindActivity) {
     EXPECT_EQ(activities.size(), 1);
 }
 
+TEST(LogTest , ActivityNotFound) {
+    Log log;
+    Date date(26, 9, 2024);
+    const std::list<Activity> &activities = log.find(date);
+
+    EXPECT_EQ(activities.size(), 0);
+}
+
 TEST(LogTest, RemoveActivity) {
     Log log;
     Time start(9, 0);

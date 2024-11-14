@@ -11,7 +11,7 @@ Time::Time(int hour, int minutes) {
 }
 
 Time &Time::operator=(const Time& right) {
-    if (this != &right) {              //evito la autoassegnazione
+    if (this != &right) {
         hour = right.hour;
         minutes = right.minutes;
     }

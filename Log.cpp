@@ -7,7 +7,6 @@
 
 
 void Log::addActivity(const Activity& activityToAdd) {
-    //std::map<Date, std::list<Activity>>::iterator itr;
     bool found = false;
 
     //Controllo se nel registro è già presente un attività fatta nello stesso giorno di quella che voglio inserire,
@@ -33,8 +32,6 @@ void Log::addActivity(const Activity& activityToAdd) {
         std::list<Activity> NewDay;
         NewDay.push_back(activityToAdd);
         activityRegister[activityToAdd.getDate()] = NewDay;
-        //activityRegister.insert(activityRegister.end(),std::make_pair(d,NewDay));
-
     }
 }
 
